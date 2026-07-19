@@ -35,11 +35,15 @@ ABeltScrollActionCharacter::ABeltScrollActionCharacter()
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
 
-	// Create a camera boom (pulls in towards the player if there is a collision)
+	// Create a fixed-view camera boom.  Absolute rotation keeps the view from
+	// turning when the character changes direction.
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 400.0f;
-	CameraBoom->bUsePawnControlRotation = true;
+	CameraBoom->TargetArmLength = 1200.0f;
+	CameraBoom->SetUsingAbsoluteRotation(true);
+	CameraBoom->SetRelativeRotation(FRotator(-12.0f, -90.0f, 0.0f));
+	CameraBoom->bUsePawnControlRotation = false;
+	CameraBoom->bDoCollisionTest = false;
 
 	// Create a follow camera
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
