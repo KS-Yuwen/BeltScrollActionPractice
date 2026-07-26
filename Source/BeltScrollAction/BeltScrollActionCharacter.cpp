@@ -12,6 +12,14 @@
 #include "InputActionValue.h"
 #include "BeltScrollAction.h"
 
+void ABeltScrollActionCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// ACharacter handles the actual double-jump behavior.
+	JumpMaxCount = bCanDoubleJump ? 2 : 1;
+}
+
 ABeltScrollActionCharacter::ABeltScrollActionCharacter()
 {
 	// Set size for collision capsule
@@ -28,8 +36,15 @@ ABeltScrollActionCharacter::ABeltScrollActionCharacter()
 
 	// Note: For faster iteration times these variables, and many more, can be tweaked in the Character Blueprint
 	// instead of recompiling to adjust them
-	GetCharacterMovement()->JumpZVelocity = 500.f;
-	GetCharacterMovement()->AirControl = 0.35f;
+	// Jump feel
+	GetCharacterMovement()->JumpZVelocity = 700.f;
+	GetCharacterMovement()->GravityScale = 1.6f;
+	GetCharacterMovement()->AirControl = 0.6f;
+
+	// Hold the jump button for a slightly higher jump
+	JumpMaxCount = 1;
+	JumpMaxHoldTime = 0.18f;
+
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;

@@ -37,6 +37,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* JumpAction;
 
+	/** Enables one extra jump while airborne. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Jump")
+	bool bCanDoubleJump = false;
+
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MoveAction;
@@ -55,6 +59,9 @@ public:
 	ABeltScrollActionCharacter();	
 
 protected:
+
+	/** Called when the game starts or when spawned */
+	virtual void BeginPlay() override;
 
 	/** Initialize input action bindings */
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
