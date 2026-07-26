@@ -37,7 +37,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Debug",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -54,7 +54,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Debug",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -74,7 +74,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Debug",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -91,7 +91,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"DebugGame",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -108,7 +108,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"DebugGame",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -128,7 +128,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"DebugGame",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -145,7 +145,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Development",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -162,7 +162,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Development",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -182,7 +182,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Development",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -199,7 +199,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Test",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -216,7 +216,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Test",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -236,7 +236,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Test",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -253,7 +253,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Shipping",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -270,7 +270,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Shipping",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -290,7 +290,7 @@
 					"BeltScrollAction",
 					"Win64",
 					"Shipping",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -307,7 +307,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"Debug",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -324,7 +324,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"Debug",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -344,7 +344,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"Debug",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -361,7 +361,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"DebugGame",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -378,7 +378,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"DebugGame",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -398,7 +398,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"DebugGame",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -415,7 +415,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"Development",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -432,7 +432,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"Development",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -452,7 +452,7 @@
 					"BeltScrollActionEditor",
 					"Win64",
 					"Development",
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -469,7 +469,7 @@
 			{
 				"name": "Launch BeltScrollAction (Debug)",
 				"request": "launch",
-				"program": "E:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
+				"program": "F:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
 				"preLaunchTask": "BeltScrollAction Win64 Debug Build",
 				"args": [
 				],
@@ -488,7 +488,7 @@
 			{
 				"name": "Launch BeltScrollAction (DebugGame)",
 				"request": "launch",
-				"program": "E:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
+				"program": "F:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
 				"preLaunchTask": "BeltScrollAction Win64 DebugGame Build",
 				"args": [
 				],
@@ -507,7 +507,7 @@
 			{
 				"name": "Launch BeltScrollAction (Development)",
 				"request": "launch",
-				"program": "E:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame.exe",
+				"program": "F:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame.exe",
 				"preLaunchTask": "BeltScrollAction Win64 Development Build",
 				"args": [
 				],
@@ -526,7 +526,7 @@
 			{
 				"name": "Launch BeltScrollAction (Test)",
 				"request": "launch",
-				"program": "E:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
+				"program": "F:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
 				"preLaunchTask": "BeltScrollAction Win64 Test Build",
 				"args": [
 				],
@@ -545,7 +545,7 @@
 			{
 				"name": "Launch BeltScrollAction (Shipping)",
 				"request": "launch",
-				"program": "E:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
+				"program": "F:\\UnrealProject\\BeltScrollActionPractice\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
 				"preLaunchTask": "BeltScrollAction Win64 Shipping Build",
 				"args": [
 				],
@@ -567,7 +567,7 @@
 				"program": "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
 				"preLaunchTask": "BeltScrollActionEditor Win64 Debug Build",
 				"args": [
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject"
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject"
 				],
 				"cwd": "C:\\Program Files\\Epic Games\\UE_5.8",
 				"stopAtEntry": false,
@@ -587,7 +587,7 @@
 				"program": "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
 				"preLaunchTask": "BeltScrollActionEditor Win64 DebugGame Build",
 				"args": [
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject"
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject"
 				],
 				"cwd": "C:\\Program Files\\Epic Games\\UE_5.8",
 				"stopAtEntry": false,
@@ -607,7 +607,7 @@
 				"program": "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
 				"preLaunchTask": "BeltScrollActionEditor Win64 Development Build",
 				"args": [
-					"E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject"
+					"F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject"
 				],
 				"cwd": "C:\\Program Files\\Epic Games\\UE_5.8",
 				"stopAtEntry": false,
@@ -630,7 +630,7 @@
 				"args": [
 					"-projectfiles",
 					"-vscode",
-					"-project=E:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
+					"-project=F:\\UnrealProject\\BeltScrollActionPractice\\BeltScrollAction.uproject",
 					"-game",
 					"-engine",
 					"-dotnet"

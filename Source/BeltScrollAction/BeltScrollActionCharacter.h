@@ -37,6 +37,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* JumpAction;
 
+	/** Enables one extra jump while airborne. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Jump")
+	bool bCanDoubleJump = false;
+
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MoveAction;
@@ -56,9 +60,14 @@ public:
 
 protected:
 
+	/** Called when the game starts or when spawned */
+	virtual void BeginPlay() override;
+
 	/** Initialize input action bindings */
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	/** Called by ACharacter after each successful jump */
+	virtual void OnJumped_Implementation() override;
 protected:
 
 	/** Called for movement input */
@@ -66,6 +75,10 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	/** Called in Blueprint when character performs its second jump */
+	UFUNCTION(BlueprintImplementableEvent, Category="Jump")
+	void BP_OnDoubleJump();
 
 public:
 
