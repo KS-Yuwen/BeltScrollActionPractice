@@ -82,7 +82,7 @@ void ABeltScrollActionCharacter::Move(const FInputActionValue& Value)
 	FVector2D MovementVector = Value.Get<FVector2D>();
 
 	// route the input
-	DoMove(MovementVector.X, MovementVector.Y);
+	DoMove(MovementVector.X, -MovementVector.Y);
 }
 
 void ABeltScrollActionCharacter::Look(const FInputActionValue& Value)
