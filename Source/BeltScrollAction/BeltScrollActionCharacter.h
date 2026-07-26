@@ -66,6 +66,8 @@ protected:
 	/** Initialize input action bindings */
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	/** Called by ACharacter after each successful jump */
+	virtual void OnJumped_Implementation() override;
 protected:
 
 	/** Called for movement input */
@@ -73,6 +75,10 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	/** Called in Blueprint when character performs its second jump */
+	UFUNCTION(BlueprintImplementableEvent, Category="Jump")
+	void BP_OnDoubleJump();
 
 public:
 

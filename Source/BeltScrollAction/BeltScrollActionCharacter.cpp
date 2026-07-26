@@ -20,6 +20,17 @@ void ABeltScrollActionCharacter::BeginPlay()
 	JumpMaxCount = bCanDoubleJump ? 2 : 1;
 }
 
+void ABeltScrollActionCharacter::OnJumped_Implementation()
+{
+	Super::OnJumped_Implementation();
+
+	// JumpCurrentCount is 2 only when the second jump succeeds.
+	if (bCanDoubleJump && JumpCurrentCount == 2)
+	{
+		BP_OnDoubleJump();
+	}
+}
+
 ABeltScrollActionCharacter::ABeltScrollActionCharacter()
 {
 	// Set size for collision capsule
