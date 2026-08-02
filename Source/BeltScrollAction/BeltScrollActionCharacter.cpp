@@ -11,6 +11,8 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "BeltScrollAction.h"
+#include "Animation/AnimInstance.h"
+#include "Animation/AnimMontage.h"
 
 void ABeltScrollActionCharacter::BeginPlay()
 {
@@ -29,6 +31,11 @@ void ABeltScrollActionCharacter::OnJumped_Implementation()
 	{
 		BP_OnDoubleJump();
 	}
+}
+
+void ABeltScrollActionCharacter::OnAttackMontageEnded(UAnimMontage *Montage, bool bInterrupted)
+{
+	bIsAttacking = false;
 }
 
 ABeltScrollActionCharacter::ABeltScrollActionCharacter()
@@ -71,6 +78,8 @@ ABeltScrollActionCharacter::ABeltScrollActionCharacter()
 	CameraBoom->bUsePawnControlRotation = false;
 	CameraBoom->bDoCollisionTest = false;
 
+	AttackMontageEndedDelegate.BindUObject(this, &ABeltScrollActionCharacter::OnAttackMontageEnded);
+
 	// Create a follow camera
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
@@ -88,6 +97,9 @@ void ABeltScrollActionCharacter::SetupPlayerInputComponent(UInputComponent* Play
 		// Jumping
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
+
+		// Attacking
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &ABeltScrollActionCharacter::DoAttack);
 
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ABeltScrollActionCharacter::Move);
@@ -151,4 +163,25 @@ void ABeltScrollActionCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();
+}
+
+void ABeltScrollActionCharacter::DoAttack()
+{
+	// Ignore input while the current attack is still playing
+	if (bIsAttacking || !AttackMontage)
+	{
+		return;
+	}
+
+	if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
+	{
+		// Play the attack montage
+		const float MontageLength = AnimInstance->Montage_Play(AttackMontage);
+		if (MontageLength > 0.f)
+		{
+			bIsAttacking = true;
+
+			AnimInstance->Montage_SetEndDelegate(AttackMontageEndedDelegate, AttackMontage);
+		}
+	}
 }

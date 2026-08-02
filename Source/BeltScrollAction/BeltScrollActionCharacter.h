@@ -10,6 +10,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UInputAction;
+class UAnimMontage;
 struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
@@ -52,6 +53,23 @@ protected:
 	/** Mouse Look Input Action */
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MouseLookAction;
+
+	/** Attack Input Action */
+	UPROPERTY(EditAnywhere, Category="Input")
+	UInputAction* AttackAction;
+
+	/** Montage played for the normal attack */
+	UPROPERTY(EditDefaultsOnly, Category="Combat|Attack")
+	UAnimMontage* AttackMontage;
+
+	/** True while the attack montage is playing */
+	bool bIsAttacking = false;
+
+	/** Delegate called when the normal attack montage ends */
+	FOnMontageEnded AttackMontageEndedDelegate;
+
+	/** Resets the attack state when the montage finishes */
+	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 
 public:
 
@@ -97,6 +115,10 @@ public:
 	/** Handles jump pressed inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
+
+	/** Starts a normal attack if attack is not already playing */
+	UFUNCTION(BlueprintCallable, Category="Input")
+	virtual void DoAttack();
 
 public:
 
