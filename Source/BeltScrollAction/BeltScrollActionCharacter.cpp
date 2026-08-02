@@ -11,6 +11,10 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "BeltScrollAction.h"
+#include "Animation/AnimInstance.h"
+#include "Animation/AnimMontage.h"
+#include "DrawDebugHelpers.h"
+#include "Interfaces/BeltScrollDamageable.h"
 
 void ABeltScrollActionCharacter::BeginPlay()
 {
@@ -29,6 +33,11 @@ void ABeltScrollActionCharacter::OnJumped_Implementation()
 	{
 		BP_OnDoubleJump();
 	}
+}
+
+void ABeltScrollActionCharacter::OnAttackMontageEnded(UAnimMontage *Montage, bool bInterrupted)
+{
+	bIsAttacking = false;
 }
 
 ABeltScrollActionCharacter::ABeltScrollActionCharacter()
@@ -71,6 +80,8 @@ ABeltScrollActionCharacter::ABeltScrollActionCharacter()
 	CameraBoom->bUsePawnControlRotation = false;
 	CameraBoom->bDoCollisionTest = false;
 
+	AttackMontageEndedDelegate.BindUObject(this, &ABeltScrollActionCharacter::OnAttackMontageEnded);
+
 	// Create a follow camera
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
@@ -88,6 +99,9 @@ void ABeltScrollActionCharacter::SetupPlayerInputComponent(UInputComponent* Play
 		// Jumping
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
+
+		// Attacking
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &ABeltScrollActionCharacter::DoAttack);
 
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ABeltScrollActionCharacter::Move);
@@ -122,6 +136,12 @@ void ABeltScrollActionCharacter::Look(const FInputActionValue& Value)
 
 void ABeltScrollActionCharacter::DoMove(float Right, float Forward)
 {
+	if (bIsAttacking)
+	{
+		// Ignore movement input while the attack montage is playing
+		return;
+	}
+
 	if (GetController() != nullptr)
 	{
 		// A / D: 画面の左右（ワールド X 軸）
@@ -151,4 +171,77 @@ void ABeltScrollActionCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();
+}
+
+void ABeltScrollActionCharacter::DoAttack()
+{
+	// Ignore input while the current attack is still playing
+	if (bIsAttacking || !AttackMontage)
+	{
+		return;
+	}
+
+	if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
+	{
+		// Play the attack montage
+		const float MontageLength = AnimInstance->Montage_Play(AttackMontage);
+		if (MontageLength > 0.f)
+		{
+			bIsAttacking = true;
+
+			AnimInstance->Montage_SetEndDelegate(AttackMontageEndedDelegate, AttackMontage);
+		}
+	}
+}
+
+void ABeltScrollActionCharacter::DoAttackTrace()
+{
+	const FVector TraceStart = GetActorLocation() + FVector(0.f, 0.f, 50.f); // キャラクターの中心から少し上にオフセット
+	const FVector TraceEnd = TraceStart + GetActorForwardVector() * AttackTraceDistance;
+
+	FCollisionObjectQueryParams ObjectTypes;
+	ObjectTypes.AddObjectTypesToQuery(ECC_Pawn); // プレイヤーや敵などの Pawn を対象にする場合
+	ObjectTypes.AddObjectTypesToQuery(ECC_WorldDynamic); // 動的なオブジェクトを対象にする場合
+
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(this); // 自分自身を無視する
+
+	TArray<FHitResult> HitResults;
+
+	const bool bHit = GetWorld()->SweepMultiByObjectType(
+		HitResults,
+		TraceStart,
+		TraceEnd,
+		FQuat::Identity,
+		ObjectTypes,
+		FCollisionShape::MakeSphere(AttackTraceRadius),
+		QueryParams
+	);
+
+	const FColor TraceColor = bHit ? FColor::Red : FColor::Green;
+
+	DrawDebugSphere(GetWorld(), TraceStart, AttackTraceRadius, 16, TraceColor, false, 1.0f);
+	DrawDebugSphere(GetWorld(), TraceEnd, AttackTraceRadius, 16, TraceColor, false, 1.0f);
+	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, TraceColor, false, 1.0f, 0, 2.0f);
+
+	TSet<AActor*> DamagedActors; // ダメージを与えたアクターを追跡するセット
+
+	for (const FHitResult& Hit : HitResults)
+	{
+		AActor* HitActor = Hit.GetActor();
+
+		if (!IsValid(HitActor) || DamagedActors.Contains(Hit.GetActor()))
+		{	// 無効なアクターや既にダメージを与えたアクターはスキップ
+			continue;
+		}
+
+		DamagedActors.Add(Hit.GetActor());
+
+		UE_LOG(LogBeltScrollAction, Log, TEXT("Hit Actor: %s"), *GetNameSafe(HitActor));
+
+		if (HitActor->GetClass()->ImplementsInterface(UBeltScrollDamageable::StaticClass()))
+		{
+			IBeltScrollDamageable::Execute_ReceiveAttack(HitActor, AttackDamage, this, Hit.ImpactPoint);
+		}
+	}
 }
