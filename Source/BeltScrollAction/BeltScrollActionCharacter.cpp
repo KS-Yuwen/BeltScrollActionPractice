@@ -134,6 +134,12 @@ void ABeltScrollActionCharacter::Look(const FInputActionValue& Value)
 
 void ABeltScrollActionCharacter::DoMove(float Right, float Forward)
 {
+	if (bIsAttacking)
+	{
+		// Ignore movement input while the attack montage is playing
+		return;
+	}
+
 	if (GetController() != nullptr)
 	{
 		// A / D: 画面の左右（ワールド X 軸）
