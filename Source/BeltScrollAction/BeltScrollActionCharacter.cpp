@@ -13,6 +13,7 @@
 #include "BeltScrollAction.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
+#include "DrawDebugHelpers.h"
 
 void ABeltScrollActionCharacter::BeginPlay()
 {
@@ -188,6 +189,45 @@ void ABeltScrollActionCharacter::DoAttack()
 			bIsAttacking = true;
 
 			AnimInstance->Montage_SetEndDelegate(AttackMontageEndedDelegate, AttackMontage);
+		}
+	}
+}
+
+void ABeltScrollActionCharacter::DoAttackTrace()
+{
+	const FVector TraceStart = GetActorLocation() + FVector(0.f, 0.f, 50.f); // キャラクターの中心から少し上にオフセット
+	const FVector TraceEnd = TraceStart + GetActorForwardVector() * AttackTraceDistance;
+
+	FCollisionObjectQueryParams ObjectTypes;
+	ObjectTypes.AddObjectTypesToQuery(ECC_Pawn); // プレイヤーや敵などの Pawn を対象にする場合
+	ObjectTypes.AddObjectTypesToQuery(ECC_WorldDynamic); // 動的なオブジェクトを対象にする場合
+
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(this); // 自分自身を無視する
+
+	TArray<FHitResult> HitResults;
+
+	const bool bHit = GetWorld()->SweepMultiByObjectType(
+		HitResults,
+		TraceStart,
+		TraceEnd,
+		FQuat::Identity,
+		ObjectTypes,
+		FCollisionShape::MakeSphere(AttackTraceRadius),
+		QueryParams
+	);
+
+	const FColor TraceColor = bHit ? FColor::Red : FColor::Green;
+
+	DrawDebugSphere(GetWorld(), TraceStart, AttackTraceRadius, 16, TraceColor, false, 1.0f);
+	DrawDebugSphere(GetWorld(), TraceEnd, AttackTraceRadius, 16, TraceColor, false, 1.0f);
+	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, TraceColor, false, 1.0f, 0, 2.0f);
+
+	for (const FHitResult& Hit : HitResults)
+	{
+		if (AActor* HitActor = Hit.GetActor())
+		{
+			UE_LOG(LogBeltScrollAction, Log, TEXT("Hit Actor: %s"), *HitActor->GetName());
 		}
 	}
 }

@@ -62,19 +62,24 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Combat|Attack")
 	UAnimMontage* AttackMontage;
 
+	/** Distance of the attack hit check in front of the character */
+	UPROPERTY(EditDefaultsOnly, Category="Combat|Attack", meta=(ClampMin="0.0", Units= "cm"))
+	float AttackTraceDistance = 120.0f;
+
+	/** Radius of the attack hit check */
+	UPROPERTY(EditDefaultsOnly, Category="Combat|Attack", meta=(ClampMin="0.0", Units= "cm"))
+	float AttackTraceRadius = 60.0f;
+
 	/** True while the attack montage is playing */
 	bool bIsAttacking = false;
 
 	/** Delegate called when the normal attack montage ends */
 	FOnMontageEnded AttackMontageEndedDelegate;
 
-	/** Resets the attack state when the montage finishes */
-	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
-
 public:
 
 	/** Constructor */
-	ABeltScrollActionCharacter();	
+	ABeltScrollActionCharacter();
 
 protected:
 
@@ -86,6 +91,7 @@ protected:
 
 	/** Called by ACharacter after each successful jump */
 	virtual void OnJumped_Implementation() override;
+	
 protected:
 
 	/** Called for movement input */
@@ -97,6 +103,9 @@ protected:
 	/** Called in Blueprint when character performs its second jump */
 	UFUNCTION(BlueprintImplementableEvent, Category="Jump")
 	void BP_OnDoubleJump();
+
+	/** Resets the attack state when the montage finishes */
+	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 
 public:
 
@@ -120,6 +129,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoAttack();
 
+	/** Checks for targets insidle the normal attack hit area */
+	UFUNCTION(BlueprintCallable, Category="Combat|Attack")
+	void DoAttackTrace();
 public:
 
 	/** Returns CameraBoom subobject **/
