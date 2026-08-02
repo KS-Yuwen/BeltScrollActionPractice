@@ -70,6 +70,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Combat|Attack", meta=(ClampMin="0.0", Units= "cm"))
 	float AttackTraceRadius = 60.0f;
 
+	/** Damage dealt by one normal attack */
+	UPROPERTY(EditDefaultsOnly, Category="Combat|Attack", meta=(ClampMin="0.0"))
+	float AttackDamage = 1.0f;
+
 	/** True while the attack montage is playing */
 	bool bIsAttacking = false;
 

@@ -14,6 +14,7 @@
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
 #include "DrawDebugHelpers.h"
+#include "Interfaces/BeltScrollDamageable.h"
 
 void ABeltScrollActionCharacter::BeginPlay()
 {
@@ -223,11 +224,24 @@ void ABeltScrollActionCharacter::DoAttackTrace()
 	DrawDebugSphere(GetWorld(), TraceEnd, AttackTraceRadius, 16, TraceColor, false, 1.0f);
 	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, TraceColor, false, 1.0f, 0, 2.0f);
 
+	TSet<AActor*> DamagedActors; // ダメージを与えたアクターを追跡するセット
+
 	for (const FHitResult& Hit : HitResults)
 	{
-		if (AActor* HitActor = Hit.GetActor())
+		AActor* HitActor = Hit.GetActor();
+
+		if (!IsValid(HitActor) || DamagedActors.Contains(Hit.GetActor()))
+		{	// 無効なアクターや既にダメージを与えたアクターはスキップ
+			continue;
+		}
+
+		DamagedActors.Add(Hit.GetActor());
+
+		UE_LOG(LogBeltScrollAction, Log, TEXT("Hit Actor: %s"), *GetNameSafe(HitActor));
+
+		if (HitActor->GetClass()->ImplementsInterface(UBeltScrollDamageable::StaticClass()))
 		{
-			UE_LOG(LogBeltScrollAction, Log, TEXT("Hit Actor: %s"), *HitActor->GetName());
+			IBeltScrollDamageable::Execute_ReceiveAttack(HitActor, AttackDamage, this, Hit.ImpactPoint);
 		}
 	}
 }
