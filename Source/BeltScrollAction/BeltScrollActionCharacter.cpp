@@ -235,6 +235,16 @@ void ABeltScrollActionCharacter::DoAttackTrace()
 			continue;
 		}
 
+		if (const ABeltScrollActionCharacter* HitCharacter = Cast<ABeltScrollActionCharacter>(HitActor))
+		{
+			const bool bIsSameTeam = (!TeamId.IsNone() && HitCharacter->TeamId == TeamId);
+			if (bIsSameTeam)
+			{	// 同じチームのキャラクターはスキップ
+				continue;
+			}
+		}
+
+
 		DamagedActors.Add(Hit.GetActor());
 
 		UE_LOG(LogBeltScrollAction, Log, TEXT("Hit Actor: %s"), *GetNameSafe(HitActor));

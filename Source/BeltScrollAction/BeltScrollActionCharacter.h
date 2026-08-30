@@ -74,6 +74,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Combat|Attack", meta=(ClampMin="0.0"))
 	float AttackDamage = 1.0f;
 
+	/** Characters on the same team cannot damage each other */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Combat|Attack")
+	FName TeamId = NAME_None;
+
 	/** True while the attack montage is playing */
 	bool bIsAttacking = false;
 
